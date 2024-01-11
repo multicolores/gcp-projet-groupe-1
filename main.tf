@@ -1,7 +1,7 @@
 # VPC
 module "vpc" {
     source = "./modules/vpc"
-    vpc-name = "vpc-projet"
+    vpc-name = "projet-001"
     vpc-ip-plage = 10
 }
 
@@ -14,5 +14,12 @@ module "instance-bastion" {
     subnet-name = module.vpc.subnet-name
     tag = "bastion"
 }
+
+# Secret Manager
+module "secret-manager" {
+    source = "./modules/secret-manager"
+    secret-manager-name = "projet-001"
+}
+
 
 # TODO - create firwall allow-ssh-from-bastion-to-app
