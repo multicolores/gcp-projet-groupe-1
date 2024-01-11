@@ -17,7 +17,7 @@ resource "google_compute_autoscaler" "autoscaler_app" {
 
 # Template de l'instance
 resource "google_compute_instance_template" "instance-app" {
-  name = var.instance-name
+  name = "app"
   machine_type = var.instance-size
   tags = ["app"]
 
@@ -43,7 +43,7 @@ resource "google_compute_instance_template" "instance-app" {
 
 # Groupe d'instance 
 resource "google_compute_instance_group_manager" "group-instance" {
-  name = "my-grou-instance"
+  name = "group-instance"
   zone = "us-central1-a"
 
   version {
@@ -63,5 +63,3 @@ data "google_compute_image" "debian_11" {
   family  = "debian-11"
   project = "debian-cloud"
 }
-
-
