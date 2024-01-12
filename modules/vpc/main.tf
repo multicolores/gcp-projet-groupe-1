@@ -42,7 +42,6 @@ resource "google_compute_firewall" "rule-allow-all-ssh-to-bastion" {
   target_tags = ["bastion"]
 }
 
-# TODO - create firwall allow-ssh-from-bastion-to-app
 resource "google_compute_firewall" "rule-allow-bastion-ssh-to-app" {
     name        = "vpc-allow-bastion-ssh-to-app"
     network     = google_compute_network.vpc_network.name
@@ -56,19 +55,4 @@ resource "google_compute_firewall" "rule-allow-bastion-ssh-to-app" {
 
     source_tags = ["bastion"]
     target_tags = ["app"]
-}
-
-resource "google_compute_firewall" "rule-allow-all-ssh-to-bastion" {
-  name        = "vpc-allow-all-ssh-to-bastion"
-  network     = google_compute_network.vpc_network.name
-  description = ""
-  priority    = 1001
-
-  allow {
-    protocol  = "tcp"
-    ports     = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-  target_tags = ["bastion"]
 }
