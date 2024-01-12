@@ -56,3 +56,18 @@ resource "google_compute_firewall" "rule-allow-bastion-ssh-to-app" {
     source_tags = ["bastion"]
     target_tags = ["app"]
 }
+
+resource "google_compute_firewall" "rule-allow-all-ssh-to-app" {
+  name        = "vpc-allow-all-ssh-to-app"
+  network     = google_compute_network.vpc_network.name
+  description = ""
+  priority    = 1004
+
+  allow {
+    protocol  = "tcp"
+    ports     = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["app"]
+}
