@@ -56,19 +56,19 @@ module "bucket1" {
   source  = "./modules/buckets"
   bucket-name = "insset-groupe1-bucket1-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket1-backend-01"
-  project-id = "analog-bot-410808"
+  project-id = "projet-vendredi"
 }
 
 module "bucket2" {
   source  = "./modules/buckets"
   bucket-name = "insset-groupe1-bucket2-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket2-backend-01"
-  project-id = "analog-bot-410808"
+  project-id = "projet-vendredi"
 }
 
 module "bucket3" {
   source  = "./modules/buckets"
   bucket-name = "insset-groupe1-bucket3-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket3-backend-01"
-  project-id = "analog-bot-410808"
+  project-id = "projet-vendredi"
 }
