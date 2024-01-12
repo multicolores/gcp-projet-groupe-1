@@ -53,6 +53,11 @@ resource "google_compute_instance_group_manager" "group-instance" {
 
   target_pools       = [google_compute_target_pool.target_pool.id]
   base_instance_name = "app"
+
+   named_port {
+    name = "db-port"
+    port = 5432 
+  }
 }
 
 resource "google_compute_target_pool" "target_pool" {

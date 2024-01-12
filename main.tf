@@ -15,10 +15,17 @@ module "instance-bastion" {
     tag = "bastion"
 }
 
+# Cloud SQL
+module "cloud-sql" {
+    source = "./modules/cloud-sql"
+    vpc-network-id = module.vpc.vpc-id
+}
+
 # Secret Manager
 module "secret-manager" {
     source = "./modules/secret-manager"
     secret-manager-name = "projet-001"
+    secret-password = module.cloud-sql.db-password
 }
 
 # Autoscaler
