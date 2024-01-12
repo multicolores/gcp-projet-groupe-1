@@ -36,16 +36,24 @@ module "autoscaler" {
     subnet-name = module.vpc.subnet-name
 }
 
-# Cloud CDN
-module "bucket" {
-  source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 5.0"
+# Buckets
+module "bucket1" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket1-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket1-backend-01"
+  project-id = "analog-bot-410808"
+}
 
-  name       = "example-bucket"
-  project_id = "example-project"
-  location   = "us-east1"
-  iam_members = [{
-    role   = "roles/storage.objectViewer"
-    member = "user:example-user@example.com"
-  }]
+module "bucket2" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket2-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket2-backend-01"
+  project-id = "analog-bot-410808"
+}
+
+module "bucket3" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket3-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket3-backend-01"
+  project-id = "analog-bot-410808"
 }
