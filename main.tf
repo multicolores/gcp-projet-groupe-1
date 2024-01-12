@@ -35,3 +35,25 @@ module "autoscaler" {
     vpc-name = module.vpc.vpc-name
     subnet-name = module.vpc.subnet-name
 }
+
+# Buckets
+module "bucket1" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket1-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket1-backend-01"
+  project-id = "analog-bot-410808"
+}
+
+module "bucket2" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket2-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket2-backend-01"
+  project-id = "analog-bot-410808"
+}
+
+module "bucket3" {
+  source  = "./modules/buckets"
+  bucket-name = "insset-groupe1-bucket3-01"
+  cdn-backend-bucket-name = "insset-groupe1-bucket3-backend-01"
+  project-id = "analog-bot-410808"
+}
