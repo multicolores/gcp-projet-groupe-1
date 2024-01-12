@@ -22,10 +22,16 @@ module "cloud-sql" {
 }
 
 # Secret Manager
-module "secret-manager" {
+module "secret-manager-db" {
     source = "./modules/secret-manager"
-    secret-manager-name = "projet-001"
+    secret-manager-name = "projet-001-cloud-sql"
     secret-password = module.cloud-sql.db-password
+}
+
+module "secret-manager-iam" {
+    source = "./modules/secret-manager"
+    secret-manager-name = "projet-001-iam"
+    secret-password = module.iam.secret_key_iam
 }
 
 # Autoscaler
@@ -36,24 +42,33 @@ module "autoscaler" {
     subnet-name = module.vpc.subnet-name
 }
 
+# IAM
+module "iam" {
+  source = "./modules/IAM" 
+}
+
 # Buckets
+resource "random_id" "random_suffix" {
+  byte_length = 2
+}
+
 module "bucket1" {
   source  = "./modules/buckets"
-  bucket-name = "insset-groupe1-bucket1-01"
+  bucket-name = "insset-groupe1-bucket1-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket1-backend-01"
   project-id = "analog-bot-410808"
 }
 
 module "bucket2" {
   source  = "./modules/buckets"
-  bucket-name = "insset-groupe1-bucket2-01"
+  bucket-name = "insset-groupe1-bucket2-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket2-backend-01"
   project-id = "analog-bot-410808"
 }
 
 module "bucket3" {
   source  = "./modules/buckets"
-  bucket-name = "insset-groupe1-bucket3-01"
+  bucket-name = "insset-groupe1-bucket3-${random_id.random_suffix.hex}"
   cdn-backend-bucket-name = "insset-groupe1-bucket3-backend-01"
   project-id = "analog-bot-410808"
 }
