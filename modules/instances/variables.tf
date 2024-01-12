@@ -1,12 +1,12 @@
 variable "instance-name" {
   type        = string
   default     = "value"
-  description = "Le nom de l'instance"
+  description = "Instance name"
 }
 
 variable "instance-size" {
   type        = string
-  description = "La taille de l'instance"
+  description = "Instance size"
 }
 
 variable "vpc-name" {
@@ -19,7 +19,17 @@ variable "subnet-name" {
   description = "Subnet name"
 }
 
-variable "tag" {
+variable "instance-tag" {
   type        = string
-  description = "TAG name"
+  description = "Instance tag"
+}
+
+variable "instance-zone" {
+  type        = string
+  description = "Instance zone"
+}
+
+variable "project-id" {
+    type        = string
+    description = "The project id"
 }

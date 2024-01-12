@@ -1,10 +1,10 @@
 resource "google_sql_database" "database" {
-  name     = "projet-database"
+  name     = var.sql-database-name
   instance = google_sql_database_instance.postgres-db.name
 }
 
 resource "google_sql_database_instance" "postgres-db" {
-  name             = "postgres-instance-001"
+  name             = var.database-instance-name
   database_version = "POSTGRES_15"
 
 
@@ -20,7 +20,7 @@ resource "random_password" "db_password" {
 }
 
 resource "google_sql_user" "user" {
-  name     = "user"
+  name     = var.sql-user-name
   instance = google_sql_database_instance.postgres-db.name
   password = random_password.db_password.result
 }

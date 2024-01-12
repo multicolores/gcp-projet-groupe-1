@@ -1,14 +1,14 @@
 variable "bucket-name" {
-  description = "Le nom du bucket"
+  description = "The bucket name"
   type        = string
 }
 
 variable "cdn-backend-bucket-name" {
-  description = "Le nom du backend du backend dans le cloud CDN"
+  description = "Cloud CDN bucket backend name"
   type        = string
 }
 
 variable "project-id" {
-  description = "L'IP du projet"
-  type        = string
+    type        = string
+    description = "The project id"
 }

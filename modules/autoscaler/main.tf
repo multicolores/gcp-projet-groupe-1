@@ -1,7 +1,7 @@
 # Autoscaller 
 resource "google_compute_autoscaler" "autoscaler_app" {
-  name   = "autoscaler-app"
-  zone   = "us-central1-a"
+  name   = var.autoscaler-name
+  zone   = var.autoscaler-zone
   target = google_compute_instance_group_manager.group-instance.id
 
   autoscaling_policy {
@@ -17,9 +17,9 @@ resource "google_compute_autoscaler" "autoscaler_app" {
 
 # Template de l'instance
 resource "google_compute_instance_template" "instance-app" {
-  name = "app"
-  machine_type = var.instance-size
-  tags = ["app"]
+  name = var.instance-template-name
+  machine_type = var.instance-template-size
+  tags = [var.instance-template-tag]
 
   disk {
     source_image = data.google_compute_image.debian_11.id
@@ -43,8 +43,8 @@ resource "google_compute_instance_template" "instance-app" {
 
 # Groupe d'instance 
 resource "google_compute_instance_group_manager" "group-instance" {
-  name = "group-instance"
-  zone = "us-central1-a"
+  name = var.group-instance-name
+  zone = var.group-instance-zone
 
   version {
     instance_template  = google_compute_instance_template.instance-app.id
@@ -61,7 +61,7 @@ resource "google_compute_instance_group_manager" "group-instance" {
 }
 
 resource "google_compute_target_pool" "target_pool" {
-  name = "my-target-pool"
+  name = var.target-pool-name
 }
 
 data "google_compute_image" "debian_11" {

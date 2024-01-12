@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "google" {
-  project     = "analog-bot-410808"
+  project     = var.project-id
   region      = "us-central1"
 }

@@ -1,8 +1,8 @@
 resource "google_compute_instance" "moninstance1" {
   name = var.instance-name
   machine_type = var.instance-size
-  zone = "us-central1-a"
-  tags = [var.tag]
+  zone = var.instance-zone
+  tags = [var.instance-tag]
 
   boot_disk {
     initialize_params {
