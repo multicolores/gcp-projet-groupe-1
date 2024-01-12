@@ -21,5 +21,10 @@ module "secret-manager" {
     secret-manager-name = "projet-001"
 }
 
-
-# TODO - create firwall allow-ssh-from-bastion-to-app
+# Autoscaler
+module "autoscaler" {
+    source = "./modules/autoscaler"
+    instance-size = "e2-medium"
+    vpc-name = module.vpc.vpc-name
+    subnet-name = module.vpc.subnet-name
+}
