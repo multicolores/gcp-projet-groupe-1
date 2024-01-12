@@ -11,12 +11,15 @@ variable "instance-size" {
 
 variable "vpc-name" {
   type        = string
+  description = "VPC name"
 }
 
 variable "subnet-name" {
   type        = string
+  description = "Subnet name"
 }
 
 variable "tag" {
   type        = string
+  description = "TAG name"
 }
