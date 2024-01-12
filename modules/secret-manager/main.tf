@@ -10,7 +10,6 @@ resource "google_secret_manager_secret" "secret-manager" {
   }
 }
 
-# TODO - update "my-connexion-string-for-cloud-sql-db"" with password of user used to log in the cloud sql db. 
 resource "google_secret_manager_secret_version" "secret_version" {
   secret       = google_secret_manager_secret.secret-manager.id
   secret_data  = var.secret-password
